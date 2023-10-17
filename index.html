@@ -47,6 +47,10 @@
         <label for="skills" class="form-label">Education(comma-separated)</label>
         <input type="text" class="form-control" id="ed" name="ed" required placeholder="Ex: XYZ college Udupi | 90% | 2019-2023">
       </div>
+       <div class="mb-3">
+        <label for="skills" class="form-label">Projects</label>
+        <input type="text" class="form-control" id="proj" name="proj" required placeholder="1. Project Name ">
+      </div>
       <div class="mb-3">
         <label for="skills" class="form-label">Declaration(Modify as per need)</label>
         <input type="text" class="form-control" id="dec" name="dec" required value="I hereby declare that all the information given above is true and correct to the best of my knowledge. All the information shared in the resume is correct, and I take full responsibility for its correctness. I solemnly declare that the information in this resume is true to the best of my knowledge and belief.">
@@ -64,7 +68,7 @@
         userData[key] = value;
       });
       sessionStorage.setItem("userData", JSON.stringify(userData));
-      window.location.href = "form.html";
+      window.location.href = "choose_template.html";
     });
   </script>
 </body>
