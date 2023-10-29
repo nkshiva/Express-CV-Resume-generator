@@ -1,12 +1,72 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-<h1>choose template</h1>
-<button onclick="window.location.href='template1.html'">Template1</button>
-<button onclick="window.location.href='template2.html'">Template2</button>
-<button onclick="window.location.href='template3.html'">Template3</button>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+		<style>
+			.container{
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-content: center;
+				justify-content: space-around;
+			}
+			a{
+				margin-left: 135px;
+			}
+
+			.card{
+				transition: transform .23s;
+			}
+			.card:hover {
+
+transform: scale(1.1); 
+}
+		</style>
+       
+    </head>
+    <body><br>
+		<center>  <h3>
+			Choose template of
+			<small class="text-muted">Your Choice</small>
+		  </h3></center> <br><br>
+
+       <div class="container">
+		<div class="card shadow-lg p-3 mb-5 rounded h-20" style="width: 18rem;">
+			<img src="assets/img/Capture2.PNG" class="card-img-top" alt="..." height="320">
+			<div class="card-body">
+			  <h5 class="card-title">Simple Grey..</h5>
+			  <p class="card-text">Your one-column, grey-colored resume is a visually striking document. Its simplicity is immediately eye-catching, making it stand out from traditional resumes</p>
+			  <a href="template1.html" class="btn btn-primary">Continue</a>
+			</div>
+		  </div>
+
+		  <div class="card shadow-lg p-3 mb-5 rounded" style="width: 18rem;">
+			<img src="assets/img/Capture.PNG" class="card-img-top" alt="Resume2 Image">
+			<div class="card-body">
+			  <h5 class="card-title">Multi Blue..</h5>
+			  <p class="card-text">Your new two-column, blue-colored (headings) resume offers a fresh and structured approach to presenting your professional information to Recruiters. </p>
+			  <a href="template2.html" class="btn btn-primary">Continue</a>
+			</div>
+		  </div>
+
+		  <div class="card shadow-lg p-3 mb-5 rounded" style="width: 18rem;">
+			<img src="assets/img/404notfound.png" class="card-img-top" alt="..." height="320">
+			<div class="card-body">
+			  <h5 class="card-title">Card title</h5>
+			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build Some quick example text to build.</p>
+			  <a href="template3.html" class="btn btn-primary">Continue</a>
+			</div>
+		  </div>
+        </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="script.js"></script>
+
+  
+    </body>
+
+
 </html>

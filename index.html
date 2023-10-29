@@ -1,75 +1,204 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Input Form</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <style>
-    .container {
-      margin-top: 50px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <form id="resumeForm">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" name="name" required>
-      </div>
-      <div class="mb-3">
-        <label for="skills" class="form-label">Summary(Modify as per need)</label>
-        <input type="text" class="form-control" id="sum" name="sum" required value="I am an enthusiastic, self-motivated, reliable, responsible and hard working person. I am a mature team worker and adaptable to all challenging situations. I am able to work well both in a team environment as well as using own initiative. I am able to work well under pressure and adhere to strict deadlines.">
-      </div>
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" id="title" name="title" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input type="tel" class="form-control" id="phone" name="phone" required>
-      </div>
-      <div class="mb-3">
-        <label for="skills" class="form-label">Skills (comma-separated)</label>
-        <input type="text" class="form-control" id="skills" name="skills" required>
-      </div>
-       <div class="mb-3">
-        <label for="skills" class="form-label">Certifications(comma-separated)</label>
-        <input type="text" class="form-control" id="certs" name="certs" required>
-      </div>
-      <div class="mb-3">
-        <label for="skills" class="form-label">Education(comma-separated)</label>
-        <input type="text" class="form-control" id="ed" name="ed" required placeholder="Ex: XYZ college Udupi | 90% | 2019-2023">
-      </div>
-       <div class="mb-3">
-        <label for="skills" class="form-label">Projects</label>
-        <input type="text" class="form-control" id="proj" name="proj" required placeholder="1. Project Name ">
-      </div>
-      <div class="mb-3">
-        <label for="skills" class="form-label">Declaration(Modify as per need)</label>
-        <input type="text" class="form-control" id="dec" name="dec" required value="I hereby declare that all the information given above is true and correct to the best of my knowledge. All the information shared in the resume is correct, and I take full responsibility for its correctness. I solemnly declare that the information in this resume is true to the best of my knowledge and belief.">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Express CV | Build your resume</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      body {
+  margin: 0;
+  font-family: "Poppins", "Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #2F281E;
+  background-color: #FFFEFE;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
-  <script>
-    document.getElementById("resumeForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const userData = {};
-      formData.forEach((value, key) => {
-        userData[key] = value;
-      });
-      sessionStorage.setItem("userData", JSON.stringify(userData));
-      window.location.href = "choose_template.html";
-    });
-  </script>
-</body>
+      .navbar {
+        background-color:white;
+        height: 70px;
+      }
+
+      .navbar-brand img {
+        max-width: 150px;
+      }
+
+      .btn-primary {
+        background-color: #007BFF;
+        border-color: #007BFF;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+
+      .btn-secondary-outline {
+        color: #007BFF;
+        border-color: #007BFF;
+      }
+
+      .btn-secondary-outline:hover {
+        color: #0056b3;
+        border-color: #0056b3;
+      }
+
+      .fs-9 {
+        font-size: 2rem;
+      }
+
+      .lead {
+        font-size: 1.25rem;
+      }
+    .btn-md{
+      color: white;
+      font-weight: 600;
+      height: 40px;
+
+    }
+    .navbar-expand-lg .navbar-collapse {
+        background-color:white; 
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="assets/img/logo.PNG" width="340" height="35"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  mt-4 mt-lg-0" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="aboutus.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="contactus.html">Contact Us</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="#feature">Motive</a></li>
+          </ul>
+          <div class="d-flex ms-lg-4">
+            <a class="btn btn-secondary-outline" href="signin.html">Sign In</a>
+            <a class="btn btn-primary ms-3" href="signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <section class="pt-4 mt-3">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start text-center py-6">
+            <h1 class="mb-4 fs-9 fw-bold"><small>ExpressCV is a resume builder</small></h1>
+            <p class="mb-6 lead text-secondary">ExpressCV is a student-focused resume builder that simplifies and speeds up the resume creation process, helping students showcase their qualifications effectively.</p>
+            <div class="text-center text-md-start">
+            <br>  <a class="btn btn-primary me-3 btn-lg" href="form.html" role="button">Get started</a>
+            </div>
+          </div>
+          <div class="col-md-6  text-end">
+            <img class="pt-7 pt-md-0 img-fluid" src="assets/img/hero/hero-img.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="pt-5 pt-md-9 mb-6 mt-5" id="feature">
+      <div class="bg-holder z-index--1 bottom-0 d-none d-lg-block" style="background-image:url(assets/img/category/shape.png);opacity:.5;"></div>
+      <div class="container mt-5">
+        <h1 class="fs-9 fw-bold mb-4 text-center">We design the best resumes of all time</h1>
+       <br><br> <div class="row">
+          <div class="col-lg-3 col-sm-6 mb-2">
+            <img class="mb-3 ms-n3" src="assets/img/category/icon1.png" width="75" alt="Feature" />
+            <h4 class="mb-3">Single Page resume</h4>
+            <p class="mb-0 fw-medium text-secondary">We provide the best single page resumes, with required attributes and minimum design.</p>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="assets/img/category/icon2.png" width="75" alt="Feature" />
+            <h4 class="mb-3">Resume Hosting</h4>
+            <p class="mb-0 fw-medium text-secondary">You can click on Host resume inorder make your resume available to everyone through uqniue URL.</p>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="assets/img/category/icon3.png" width="75" alt="Feature" />
+            <h4 class="mb-3">User friendly resumes</h4>
+            <p class="mb-0 fw-medium text-secondary">Our resumes attract most of HR's, basic details which are essentials for shortlisting students are added.</p>
+          </div>
+          <div class="col-lg-3 col-sm-6 mb-2"> <img class="mb-3 ms-n3" src="assets/img/category/icon4.png" width="75" alt="Feature" />
+            <h4 class="mb-3">2 min for single resume</h4>
+            <p class="mb-0 fw-medium text-secondary">less than 2 minutes you can generate a good resume , Just need to fill basic Infromation </p>
+          </div>
+        </div>
+        <br>
+        <div class="text-center">
+          <a class="btn btn-primary me-3 btn-lg md" href="hosting.html" role="button">Try Hostng Feature</a>
+        </div>
+      </div>
+    </section><br><br>
+    
+    <section class="pb-2 pb-lg-5">
+      <div class="container">
+        <div class="row border-top border-top-secondary pt-7">
+          <footer class="bg-white  text-dark py-4"><br><br>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-6 mb-lg-0">
+                  <img class="mb-3" src="assets/img/favicons/favicon.png" width="100" alt="" />
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
+                  <h5>Quick Links</h5>
+                  <ul class="list-unstyled">
+                    <li><a class="text-dark text-decoration-none" href="#!">About Us</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#feature">Motive</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#!">Contact Us</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#!">FAQ</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
+                  <h5>Legal Information</h5>
+                  <ul class="list-unstyled">
+                    <li><a class="text-dark text-decoration-none" href="#!">Disclaimer</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#!">Financing</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#!">Privacy Policy</a></li>
+                    <li><a class="text-dark text-decoration-none" href="#!">Terms of Service</a></li>
+                  </ul>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                  <h5>Subscribe to Our Newsletter</h5>
+                  <p>Get the latest updates and news straight to your inbox.</p>
+                  <form>
+                    <div class="input-group mb-3">
+                      <input type="email" class="form-control" placeholder="Enter your email" aria-label="Email" />
+                      <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="container py-3">
+              <div class="row justify-content-between">
+                <div class="col-12 col-md-auto mb-1 mb-md-0">
+                  <p class="mb-0">&copy; 2023 Express CV. All Rights Reserved.</p>
+                </div>
+                <div class="col-12 col-md-auto">
+                  <p class="mb-0">Made with<span class="fas fa-heart mx-1 text-danger"></span> by <a class="text-decoration-none ms-1" href="" target="_blank">Team Express CV</a></p>
+                </div>
+              </div>
+            </div>
+          </footer>
+          
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Volkhov:wght@700&amp;display=swap" rel="stylesheet">
+  </body>
 </html>

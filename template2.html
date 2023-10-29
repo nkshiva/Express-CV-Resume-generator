@@ -59,6 +59,8 @@
     <button type="button" onclick="generatePDF()" class="btn btn-primary pull-left">Export to PDF</button>
     <div class="container" id="container">
         <div class="resume-box">
+           <div class="row">
+           <div class="col-md-6">
             <h2 class="name" style="text-align: center;" id="userName"></h2>
             <p class="title" style="text-align: center;" id="userTitle"></p>
 
@@ -77,7 +79,14 @@
             </ul>
 
             <hr>
+            <h3 class="section-heading">Languages</h3>
+            <ul  id="lang">
+                
+            </ul>
 
+            <hr>
+</div>
+                <div class="col-md-6">
             <h3 class="section-heading">Certifications</h3>
             <ul id="userCert"></ul>
 
@@ -93,10 +102,17 @@
                
             </ol>
 
+            <h3 class="section-heading">Additional Infromation</h3>
+            <ul  id="ainfo">
+               
+            </ul>
+
             <hr>
 
             <h3 class="section-heading">Declaration</h3>
             <ul id="dec"></ul>
+          </div>
+        </div>
         </div>
     </div>
 
@@ -122,7 +138,11 @@
       document.getElementById("sum").textContent = userData.sum;
       const proj = userData.proj.split(",").map(proj => `<li>${proj.trim()}</li>`).join("");//if we dont add join , comma value will be present
       document.getElementById("proj").innerHTML = proj;
-
+      const lang = userData.lang.split(",").map(lang => `<li>${lang.trim()}</li>`).join("");
+      document.getElementById("lang").innerHTML = lang;
+      //console.log(lang);
+      const ainfo = userData.ainfo.split(",").map(ainfo => `<li>${ainfo.trim()}</li>`).join("");
+      document.getElementById("ainfo").innerHTML = ainfo;
 
 
     }
