@@ -42,6 +42,9 @@
     </style>
 </head>
 <body>
+    <div class="alert alert-success" role="alert" id="myAlert" style="display: none;">
+        Congratulations Resume Downloaded Successfully.
+    </div>
     <button type="button" onclick="generatePDF()" class="btn btn-primary float-end">Export to PDF</button>
     <br>
     <div class="container" id="container">
@@ -139,6 +142,9 @@
             };
 
             html2pdf().set(opt).from(element).save();
+            var load=document.getElementById('myAlert');
+        load.style.display='block';
+        console.log("load"+load);
         }
     </script>
 </body>

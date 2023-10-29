@@ -56,7 +56,11 @@
 </head>
 
 <body>
+  <div class="alert alert-success" role="alert" id="myAlert" style="display: none;">
+    Congratulations Resume Downloaded Successfully.
+</div>
     <button type="button" onclick="generatePDF()" class="btn btn-primary pull-left">Export to PDF</button>
+  <br>
     <div class="container" id="container">
         <div class="resume-box">
            <div class="row">
@@ -163,7 +167,9 @@
         
         // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.
         html2pdf().set(opt).from(element).save();
-
+        var load=document.getElementById('myAlert');
+        load.style.display='block';
+        console.log("load"+load);
     }
   </script>
 </body>
