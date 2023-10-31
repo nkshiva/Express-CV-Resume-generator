@@ -60,7 +60,7 @@ body{
 
 }
 .input-field .input:focus, .input-field .input{
-    border-bottom: 1px solid #73ae27;
+    border-bottom: 1px solid #275bae;
 }
 .submit{
     border: none;

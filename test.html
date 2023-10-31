@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Audio from Text on Mouse Hover</title>
+  <script src="https://cdn.jsdelivr.net/npm/web-speech-api/dist/speech-api.min.js"></script>
+</head>
+<body>
+    <div> thank you</div><br>
+
+
+
+    <p style="background-color: green;">This is the text that I want to convert to audio.</p>
+  
+  <audio id="audio"></audio>
+
+  <script>
+    const synth = window.speechSynthesis;
+
+    const elements = document.querySelectorAll("div");
+    //const elements = document.querySelectorAll("p");
+
+    elements.forEach(element => {
+      element.addEventListener("mouseover", function() {
+        const text = this.textContent;
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        utterance.onboundary = function(event) {
+          if (event.boundaryType === "sentence") {
+            // The sentence has been generated.
+            const audio = new Blob([event.target.result], { type: "audio/mp3" });
+
+            document.getElementById("audio").src = audio;
+            document.getElementById("audio").play();
+          }
+        };
+
+        synth.speak(utterance);
+      });
+    });
+  </script>
+</body>
+</html>

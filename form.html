@@ -9,7 +9,7 @@
   <style>
     .container {
       margin-top: 50px;
-      width: 90%;
+      
     }
 
     
@@ -18,7 +18,25 @@
     button{
       float: right;
     }
+
+    @media (max-width: 400px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 392px) {
+  .container {
+    width: 70%;
+  }
+}
+
+
   </style>
+
+
+
+
   
 </head>
 <body>
@@ -49,11 +67,13 @@
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <input type="text" class="form-control" id="email" name="email" required>
+        <small class="error-message" id="emailError" style="color: red;"></small>
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
         <input type="tel" class="form-control" id="phone" name="phone" required>
+        <small class="error-message" id="phoneError" style="color: red;"></small>
       </div>
       <div class="mb-3">
         <label for="skills" class="form-label">Skills (comma-separated)</label>
@@ -89,23 +109,41 @@
 
 
   <script>
+     document.getElementById("resumeForm").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    //if (sessionStorage.length>0) {
-    //  alert('data exists');
-    //}
-//else{
-    document.getElementById("resumeForm").addEventListener("submit", function (event) {
-      event.preventDefault();
+    const formData = new FormData(event.target);
+    const userData = {};
+    let valid = true;
 
-      const formData = new FormData(event.target);
-      const userData = {};
+    // Email validation using regex
+    const email = formData.get("email");
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    if (!email.match(emailPattern)) {
+      document.getElementById("emailError").textContent = "Invalid email address.";
+      valid = false;
+    } else {
+      document.getElementById("emailError").textContent = "";
+    }
+
+    // Phone number validation using regex (accepts only numbers, dashes, and spaces)
+    const phone = formData.get("phone");
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phone.match(phonePattern)) {
+      document.getElementById("phoneError").textContent = "Invalid phone number.";
+      valid = false;
+    } else {
+      document.getElementById("phoneError").textContent = "";
+    }
+
+    if (valid) {
       formData.forEach((value, key) => {
         userData[key] = value;
       });
       sessionStorage.setItem("userData", JSON.stringify(userData));
       window.location.href = "choose_template.html";
-    });
-//}
+    }
+  });
   </script>
 </body>
 </html>

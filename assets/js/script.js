@@ -1,55 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var submitbtn = document.getElementById("submitbtn");
+function validateForm() {
+    let valid = true;
 
-    submitbtn.addEventListener("click", function () {
-        if (validateForm()) {
-            const email = document.getElementById('email').value;
+    const firstname = document.getElementById("firstname");
+    const lastname = document.getElementById("lastname");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm-password");
 
-            // Store the email address in local storage
-            localStorage.setItem('userEmail', email);
+    // Regular expressions for validation
+    const namePattern = /^[A-Za-z]+$/;
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-            // Show the signup success alert
-            const alert = document.getElementById('signupSuccessAlert');
-            alert.classList.add('show');
-            window.location.assign('/signin.html');
-            // You can redirect the user after form submission
-        }
-    });
-
-    function validateForm() {
-        
-        var email = document.forms["myForm"]["email"].value;
-        var password = document.forms["myForm"]["password"].value;
-        var firstname = document.forms["myForm"]["firstname"].value;
-        var lastname = document.forms["myForm"]["lastname"].value;
-
-        var confirmpassword = document.forms["myForm"]["confirm-password"].value;
-
-        // Regular expression to validate email
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-        // Check if the email is valid
-        if (!email.match(emailPattern)) {
-            alert("Please enter a valid email address.");
-            return false;
-        }
-
-        if (firstname.trim() === '' || lastname.trim() === '') {
-            alert("Please enter both your first and last name.");
-            return false;
-        }
-        // Check if the password is at least 6 characters long
-        if (password.length < 6) {
-            alert("Password must be at least 6 characters long.");
-            return false;
-        }
-
-        if (confirmpassword !== password) {
-            alert("Confirm password does not match with Password");
-            return false;
-        }
-
-        // If both email and password are valid, the form can be submitted
-        return true;
+    if (!firstname.value.match(namePattern)) {
+        document.getElementById("firstnameError").textContent = "Invalid first name";
+        valid = false;
+    } else {
+        document.getElementById("firstnameError").textContent = "";
     }
-});
+
+    if (!lastname.value.match(namePattern)) {
+        document.getElementById("lastnameError").textContent = "Invalid last name";
+        valid = false;
+    } else {
+        document.getElementById("lastnameError").textContent = "";
+    }
+
+    if (!email.value.match(emailPattern)) {
+        document.getElementById("emailError").textContent = "Invalid email address";
+        valid = false;
+    } else {
+        document.getElementById("emailError").textContent = "";
+    }
+
+    if (!password.value.match(passwordPattern)) {
+        document.getElementById("passwordError").textContent = "Password must be at least 8 characters and include at least one letter and one number";
+        valid = false;
+    } else {
+        document.getElementById("passwordError").textContent = "";
+    }
+
+    if (password.value !== confirmPassword.value) {
+        document.getElementById("confirmPasswordError").textContent = "Passwords do not match";
+        valid = false;
+    } else {
+        document.getElementById("confirmPasswordError").textContent = "";
+    }
+
+    return valid;
+}

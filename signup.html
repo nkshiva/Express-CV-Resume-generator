@@ -6,52 +6,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    <title>Signup</title>
+
+    <title>Login</title>
     <style>
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .input-field {
+            margin: 10px 0;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+
+        .submit {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
-<body class="d-flex justify-content-center align-content-center"> 
-    <div class="container d-flex justify-content-center align-content-center">
-        <form name="myForm" onsubmit="return validateForm()" class="shadow border px-5 input-box form d-flex justify-content-center align-content-center flex-column text-center"> 
-            <header></header>
+<body>
+    <div class="container">
+        <form name="myForm" onsubmit="return validateForm()" class="form">
+            <h2>Register Yourself...</h2>
             <div class="input-field">
-                <input type="text" class="input" id="firstname" required>
                 <label for="firstname">First Name</label>
+                <input type="text" class="input" id="firstname" required>
+                <small class="error-message" id="firstnameError"></small>
             </div>
             <div class="input-field">
-                <input type="text" class="input" id="lastname" required>
                 <label for="lastname">Last Name</label>
+                <input type="text" class="input" id="lastname" required>
+                <small class="error-message" id="lastnameError"></small>
             </div>
+
             <div class="input-field">
-                <input type="text" class="input" id="email" required autocomplete="off">
                 <label for="email">Email</label>
+                <input type="text" class="input" id="email" required autocomplete="off">
+                <small class="error-message" id="emailError"></small>
             </div>
             <div class="input-field">
-                <input type="password" class="input" id="password" required>
                 <label for="password">Password</label>
+                <input type="password" class="input" id="password" required>
+                <small class="error-message" id="passwordError"></small>
             </div>
             <div class="input-field">
-                <input type="password" class="input" id="confirm-password" required>
                 <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="input" id="confirm-password" required>
+                <small class="error-message" id="confirmPasswordError"></small>
             </div>
             <div class="input-field">
-                <button type="submit" id="submitbtn" class="submit px-0">Sign Up</button>
+                <button type="submit" id="submitbtn" class="submit">Sign Up</button>
             </div>
-            <br>
-            <span>Already have an account? <a href="signin.html">Sign in</a></span>
+
+            <p>Already have an account? <a href="signin.html">Sign in</a></p>
         </form>
-        
-        <!-- Bootstrap alert for successful signup -->
-        <div class="alert alert-success alert-dismissible fade" role="alert" id="signupSuccessAlert">
-            Signup successful! Your email address has been stored.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
     </div>
 
     <script src="assets/js/script.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
+
 </html>

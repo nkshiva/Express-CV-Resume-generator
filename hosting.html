@@ -16,6 +16,7 @@
         <div class="mt-3">
             <input type="file" id="fileInput" class="form-control" required>
         </div>
+        <div id="errorMessage" class="text-danger mt-3"></div>
 
         <button onclick="uploadFile()" class="btn btn-primary mt-3">Upload</button>
 
@@ -47,6 +48,16 @@
         firebase.initializeApp(firebaseConfig);
 
         function uploadFile() {
+            const fileInput1 = document.getElementById("fileInput");
+
+            
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (fileInput1.files.length === 0) {
+            errorMessage.textContent = "Please choose a file before uploading.";
+            return;
+    }
+
             var load=document.getElementById('loader');
             load.style.display='block';
             var fileInput = document.getElementById('fileInput');

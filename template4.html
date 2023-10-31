@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    *{
+     box-sizing:border-box;
+      font-family:sans-serif;
+     
+      overflow:hidden;
+      padding: 0px;
+      text-align: center;
+    }
+    .container {
+      background-color:aliceblue;
+      padding: 10px;
+      padding-top: 0px;
+      
+    
+     
+      
+    }
+    button{
+      float: right;
+    }
+    h3{font-weight: bolder;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+        
+        
+      
+      
+    }
+    .col{
+        
+        width:40%;
+        background-color: gainsboro;
+        
+    }
+    .col1{
+       
+        width:60%;
+       
+        
+    }
+    .col2{
+        
+        width:100%;
+       
+        
+    }
+    ul,ol,li{text-align: center;
+
+}
+   
+
+   
+
+  </style>
+  <script type="text/javascript">
+   
+  </script>
+</head>
+<body>
+  <div class="alert alert-success" role="alert" id="myAlert" style="display: none;">
+    Congratulations Resume Downloaded Successfully.
+</div>
+  <button type="button" onclick="generatePDF()" class="btn btn-primary pull-left">Export to PDF</button><br>
+
+  <div class="container" id="container">
+    <div class="row">
+      <div class="col"><h3 id="userName"></h3><br>
+        <p id="userTitle"></p><br><h3>Contact Information</h3><p id="userEmail"></p>
+        <p id="userPhone"></p></div>
+      <div class="col1"><h3>Summary</h3><p id="sum"></p>
+       
+        </div></div>
+     
+        <div class="row">
+      <div class="col"> <h3>Educational Qualification</h3>
+        
+        <ul id="ed"></ul></div>
+      <div class="col1"><h3>Projects</h3>
+      
+        <ol id="proj"></ol> </div>
+    </div>
+    
+    <div class="row">
+      <div class="col"><h3>Skills</h3>
+       
+        <ul id="userSkills"></ul>
+        </div>
+      <div class="col1"> 
+        <h3>Certifications</h3>
+      
+        <ul id="userCert"></ul></div>
+    </div>
+    
+    
+      
+      <div class="row">
+        <div class="col2">
+          <h3>Declaration</h3>
+          
+         <ul id="dec"></ul></div></div>
+  </div>
+  
+  </div>
+
+  <script>
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    if (userData) {
+      document.getElementById("userName").textContent = userData.name;
+      document.getElementById("userTitle").textContent = userData.title;
+      document.getElementById("userEmail").textContent = "Email: " + userData.email;
+      document.getElementById("userPhone").textContent = "Phone: " + userData.phone;
+      const skills = userData.skills.split(",").map(skill => `<li>${skill.trim()}</li>`).join("");//if we dont add join , comma value will be present
+      document.getElementById("userSkills").innerHTML = skills;
+
+      const certs = userData.certs.split(",").map(cert => `<li>${cert.trim()}</li>`).join("");//if we dont add join , comma value will be present
+      document.getElementById("userCert").innerHTML = certs;
+
+      const ed = userData.ed.split(",").map(ed => `<li>${ed.trim()}</li>`).join("");//if we dont add join , comma value will be present
+      document.getElementById("ed").innerHTML = ed;
+
+
+      document.getElementById("dec").textContent = userData.dec;
+      document.getElementById("sum").textContent = userData.sum;
+      const proj = userData.proj.split(",").map(proj => `<li>${proj.trim()}</li>`).join("");//if we dont add join , comma value will be present
+      document.getElementById("proj").innerHTML = proj;
+
+
+
+    }
+
+
+
+     function generatePDF(){
+      var element = document.getElementById('container');
+        //element.style.width = '700px';
+        //element.style.height = '900px';
+        var opt = {
+            margin:       0.5,
+            filename:     userData.name+'.pdf',
+            image:        { type: 'jpeg', quality: 1 },
+            html2canvas:  { scale: 1 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait',precision: '12' }
+          };
+        
+        // choose the element and pass it to html2pdf() function and call the save() on it to save as pdf.
+        html2pdf().set(opt).from(element).save();
+        var load=document.getElementById('myAlert');
+        load.style.display='block';
+        console.log("load"+load);
+
+    }
+  </script>
+</body>
+</html>
